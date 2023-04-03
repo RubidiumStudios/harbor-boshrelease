@@ -19,7 +19,8 @@ if [ "$1" != "--skip-download" ]; then
 fi
 cd -
 cd ..
-bosh add-blob $files_dir/smoke-test  smoke-test/smoke-test
+bosh add-blob make/smoke_test  smoke-test/smoke-test
+bosh add-blob make/config-utils harbor-common/config-utils
 bosh add-blob $files_dir/docker-19.03.12.tgz docker/docker.tgz
 bosh add-blob $files_dir/docker-compose-Linux-x86_64 docker/docker-compose-Linux-x86_64
 bosh add-blob $files_dir/harbor-offline-installer-latest.tgz harbor/harbor-offline-installer-latest.tgz
@@ -29,4 +30,4 @@ bosh add-blob $files_dir/libevent-2.0-5_2.0.21-stable-2ubuntu0.16.04.1_amd64.deb
 bosh add-blob $files_dir/rpcbind_0.2.3-0.2_amd64.deb nfs-common/rpcbind_0.2.3-0.2_amd64.deb
 bosh add-blob $files_dir/keyutils_1.5.9-8ubuntu1_amd64.deb nfs-common/keyutils_1.5.9-8ubuntu1_amd64.deb
 bosh add-blob $files_dir/libnfsidmap2_0.25-5_amd64.deb nfs-common/libnfsidmap2_0.25-5_amd64.deb
-bosh add-blob $files_dir/harbor-wavefront-bundle-2.0.1.tgz wavefront/harbor-wavefront-bundle-2.0.1.tgz
+bosh add-blob $files_dir/harbor-wavefront-bundle-2.0.2.tgz wavefront/harbor-wavefront-bundle.tgz
