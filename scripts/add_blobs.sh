@@ -3,9 +3,10 @@
 set -e
 
 files_dir=/tmp/harbor_files
-mkdir -p $files_dir
-cd $files_dir
 if [ "$1" != "--skip-download" ]; then
+  [[ -d $files_dir ]] && rm -ri "$files_dir"
+  mkdir -p $files_dir
+  cd $files_dir
   wget https://download.docker.com/linux/static/stable/x86_64/docker-19.03.12.tgz
   wget -O docker-compose-Linux-x86_64 https://github.com/docker/compose/releases/download/1.27.0/docker-compose-Linux-x86_64
   wget -O harbor-offline-installer-latest.tgz https://github.com/goharbor/harbor/releases/download/v2.1.0-rc3/harbor-offline-installer-v2.1.0-rc3.tgz
@@ -16,8 +17,8 @@ if [ "$1" != "--skip-download" ]; then
   wget http://mirrors.kernel.org/ubuntu/pool/main/r/rpcbind/rpcbind_0.2.3-0.2_amd64.deb
   wget http://mirrors.kernel.org/ubuntu/pool/main/k/keyutils/keyutils_1.5.9-8ubuntu1_amd64.deb
   wget https://storage.googleapis.com/harbor-ci-pipeline-store/build-artifacts/harbor-wavefront-bundle-2.0.2.tgz
+  cd -
 fi
-cd -
 cd ..
 bosh add-blob make/smoke_test  smoke-test/smoke-test
 bosh add-blob make/config-utils harbor-common/config-utils
